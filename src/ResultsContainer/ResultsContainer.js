@@ -26,14 +26,16 @@ export default class ResultsContainer extends Component {
               value.characterData.results.length > 0 ? (
                 value.characterData.results.map(item => (
                   <p style={this.styles} key={item.url} className={item.index}>
-                    {item.name}
+                    {item.name ? item.name : item.title}
                   </p>
                 ))
               ) : (
                 <span>Coulnd't find anything! Try another name or topic.</span>
               )
             ) : (
-              <span className='default-results-text'>Enter a name and hit submit!</span>
+              <span className="default-results-text">
+                Enter a name and hit submit!
+              </span>
             )}
             {/* FIX refactor this /\ */}
           </section>
