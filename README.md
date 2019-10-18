@@ -1,1 +1,2 @@
-# reif-star-wars
+# Star Wars search app
+Using the SWAPI api
