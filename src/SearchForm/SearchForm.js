@@ -21,9 +21,8 @@ export default class SearchForm extends Component {
   };
 
   handleDropDown = e => {
-    let output = e.target.value === "character" ? "people" : e.target.value;
     this.setState({
-      selected: output
+      selected: e.target.value
     });
   };
 
@@ -35,23 +34,23 @@ export default class SearchForm extends Component {
   render() {
     return (
       <form
-        id="character-search-form"
+        className="character-search-form"
         onSubmit={e => {
           this.handleSubmit(e);
         }}
       >
         <fieldset>
           <legend>Search for your favorite {this.state.selected}!</legend>
-          <section id="character-search-container">
+          <section className="character-search-container">
             <label>What do you want to search for?</label>
             <select
               name="query"
-              id="type-select"
+              className="type-select"
               onChange={e => {
                 this.handleDropDown(e);
               }}
             >
-              <option value="character" className="drop-down-option">
+              <option value="people" className="drop-down-option">
                 People
               </option>
               <option value="planets" className="drop-down-option">
@@ -70,7 +69,10 @@ export default class SearchForm extends Component {
                 Species
               </option>
             </select>
-            <label htmlFor="character-search-input" id="character-search-label">
+            <label
+              htmlFor="character-search-input"
+              className="character-search-label"
+            >
               Enter a{" "}
               {this.state.selected === "people"
                 ? "person"
@@ -80,7 +82,7 @@ export default class SearchForm extends Component {
             <input
               name="character_name"
               type="text"
-              id="character-search-input"
+              className="character-search-input"
               value={this.state.input.value}
               onChange={e => {
                 this.handleChange(e);
@@ -90,7 +92,7 @@ export default class SearchForm extends Component {
             <button
               disabled={this.state.input.value === ""}
               type="submit"
-              id="character-search-button"
+              className="character-search-button"
             >
               Submit
             </button>

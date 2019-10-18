@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import AppContext from "../AppContext";
 
 export default class ResultsContainer extends Component {
-  static contextType = AppContext;
+  // static contextType = AppContext;
 
   styles = {
     border: "1px solid black"
@@ -20,17 +20,17 @@ export default class ResultsContainer extends Component {
       // static getDerivedStateFromProps()
       <AppContext.Consumer>
         {value => (
-          <section id="results-container" style={this.styles}>
+          <section className="results-container" style={this.styles}>
             {/* FIX refactor this \/ */}
             {value.characterData.results ? (
               value.characterData.results.length > 0 ? (
                 value.characterData.results.map(item => (
-                  <p style={this.styles} key={item.url} id={item.index}>
+                  <p style={this.styles} key={item.url} className={item.index}>
                     {item.name}
                   </p>
                 ))
               ) : (
-                <span>Coulnd't find anything! Try another name.</span>
+                <span>Coulnd't find anything! Try another name or topic.</span>
               )
             ) : (
               <span>Enter a name and hit submit!</span>
