@@ -33,7 +33,7 @@ export default class ResultsContainer extends Component {
                 <span>Coulnd't find anything! Try another name or topic.</span>
               )
             ) : (
-              <span>Enter a name and hit submit!</span>
+              <span className='default-results-text'>Enter a name and hit submit!</span>
             )}
             {/* FIX refactor this /\ */}
           </section>
