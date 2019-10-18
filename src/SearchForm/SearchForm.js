@@ -43,6 +43,7 @@ export default class SearchForm extends Component {
         <fieldset>
           <legend>Search for your favorite {this.state.selected}!</legend>
           <section id="character-search-container">
+            <label>What do you want to search for?</label>
             <select
               name="query"
               id="type-select"
@@ -51,7 +52,7 @@ export default class SearchForm extends Component {
               }}
             >
               <option value="character" className="drop-down-option">
-                Character
+                People
               </option>
               <option value="planets" className="drop-down-option">
                 Planet
@@ -70,7 +71,11 @@ export default class SearchForm extends Component {
               </option>
             </select>
             <label htmlFor="character-search-input" id="character-search-label">
-              Enter a {this.state.selected}'s name:
+              Enter a{" "}
+              {this.state.selected === "people"
+                ? "person"
+                : this.state.selected}
+              's name:
             </label>
             <input
               name="character_name"

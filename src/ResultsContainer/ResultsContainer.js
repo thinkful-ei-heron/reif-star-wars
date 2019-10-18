@@ -11,11 +11,17 @@ export default class ResultsContainer extends Component {
 
   render() {
     return (
+      // https://reactjs.org/docs/context.html#contextconsumer
+      // A React component that subscribes to context changes.
+      //
+      // This allowed me to easily rerender this child when
+      // the parent's state(and thus the context) changed,
+      // without having to use componentDidUpdate or
+      // static getDerivedStateFromProps()
       <AppContext.Consumer>
-        {/* FIX explain this */}
         {value => (
           <section id="results-container" style={this.styles}>
-            {/* FIX refactor this */}
+            {/* FIX refactor this \/ */}
             {value.characterData.results ? (
               value.characterData.results.length > 0 ? (
                 value.characterData.results.map(item => (
@@ -29,6 +35,7 @@ export default class ResultsContainer extends Component {
             ) : (
               <span>Enter a name and hit submit!</span>
             )}
+            {/* FIX refactor this /\ */}
           </section>
         )}
       </AppContext.Consumer>

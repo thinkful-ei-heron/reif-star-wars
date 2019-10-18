@@ -48,6 +48,8 @@ export default class App extends Component {
           }}
         >
           <SearchForm />
+          {/* Render LoadingText componen
+           while waiting for fetch */}
           {loading ? <LoadingText /> : <ResultsContainer />}
         </AppContext.Provider>
       </section>
