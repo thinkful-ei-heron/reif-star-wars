@@ -25,16 +25,15 @@ export default class App extends Component {
     this.setState({
       loading: true
     });
+
     setTimeout(() => {
       fetch(`https://swapi.co/api/${selected}/?search=+${searchTerm}`)
         .then(resp => this.handleErrors(resp))
         .then(response => response.json())
         .then(data => this.setState({ characterData: data, loading: false }))
-        .catch(e =>
-          e.text().then(eMessage => {
-            console.log(eMessage);
-          })
-        );
+        .catch(eMessage => {
+          console.log(eMessage);
+        });
     }, 2000);
   };
 
@@ -45,16 +44,10 @@ export default class App extends Component {
         <AppContext.Provider
           value={{
             callApi: this.callApi,
-            renderResults: this.renderResults
-          }}
-        >
-          <SearchForm />
-        </AppContext.Provider>
-        <AppContext.Provider
-          value={{
             characterData: this.state.characterData
           }}
         >
+          <SearchForm />
           {loading ? <LoadingText /> : <ResultsContainer />}
         </AppContext.Provider>
       </section>

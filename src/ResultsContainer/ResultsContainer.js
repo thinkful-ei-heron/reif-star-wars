@@ -12,8 +12,10 @@ export default class ResultsContainer extends Component {
   render() {
     return (
       <AppContext.Consumer>
+        {/* FIX explain this */}
         {value => (
           <section id="results-container" style={this.styles}>
+            {/* FIX refactor this */}
             {value.characterData.results ? (
               value.characterData.results.length > 0 ? (
                 value.characterData.results.map(item => (

@@ -6,7 +6,7 @@ export default class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      input: { value: "", touched: false },
+      input: { value: "" },
       selected: "people"
     };
   }
@@ -15,25 +15,21 @@ export default class SearchForm extends Component {
   handleChange = e => {
     this.setState({
       input: {
-        value: e.target.value,
-        touched: e.target.value.length > 0 ? true : false
+        value: e.target.value
       }
+    });
+  };
+
+  handleDropDown = e => {
+    let output = e.target.value === "character" ? "people" : e.target.value;
+    this.setState({
+      selected: output
     });
   };
 
   handleSubmit = e => {
     e.preventDefault();
     this.context.callApi(this.state.selected, this.state.input.value);
-  };
-
-  handleDropDown = e => {
-    let output =
-      document.getElementById("type-select").value === "character"
-        ? "people"
-        : e.target.value;
-    this.setState({
-      selected: output
-    });
   };
 
   render() {
@@ -87,7 +83,7 @@ export default class SearchForm extends Component {
               required
             />
             <button
-              disabled={!this.state.input.touched}
+              disabled={this.state.input.value === ""}
               type="submit"
               id="character-search-button"
             >
