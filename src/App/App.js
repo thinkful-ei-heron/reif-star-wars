@@ -1,18 +1,43 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import AppContext from "../AppContext";
-import SearchForm from "../SearchForm/SearchForm";
-import ResultsContainer from "../ResultsContainer/ResultsContainer";
-import LoadingText from "../LoadingText/LoadingText";
+import AppContext from '../AppContext';
+import SearchForm from '../SearchForm/SearchForm';
+import ResultsContainer from '../ResultsContainer/ResultsContainer';
+import LoadingText from '../LoadingText/LoadingText';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       loading: false,
-      characterData: {}
+      characterData: {},
+      results: [],
     };
   }
+
+  handleResults = () => {
+    let output;
+    if (this.state.characterData.results) {
+      if (this.state.characterData.results.length > 0) {
+        output = this.state.characterData.results.map(item => (
+          <p key={item.url} id={item.index} className='result-name'>
+            {item.name ? item.name : item.title}
+          </p>
+        ));
+      } else {
+        output = (
+          <span>Coulnd't find anything! Try another name or topic.</span>
+        );
+      }
+    } else {
+      output = (
+        <span className='default-results-text'>
+          Enter a name and hit submit!
+        </span>
+      );
+    }
+    return output;
+  };
 
   handleErrors(response) {
     if (!response.ok) {
@@ -23,7 +48,7 @@ export default class App extends Component {
 
   callApi = (selected, searchTerm) => {
     this.setState({
-      loading: true
+      loading: true,
     });
 
     setTimeout(() => {
@@ -40,11 +65,11 @@ export default class App extends Component {
   render() {
     const loading = this.state.loading;
     return (
-      <section id="app">
+      <section id='app'>
         <AppContext.Provider
           value={{
             callApi: this.callApi,
-            characterData: this.state.characterData
+            results: this.handleResults(),
           }}
         >
           <SearchForm />
