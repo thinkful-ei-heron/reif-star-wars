@@ -1,38 +1,37 @@
-import React from "react";
-import Enzyme, { mount } from "enzyme";
-import App from "../App/App";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import Enzyme, { mount } from 'enzyme';
+import App from '../App/App';
+import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("Stuff gets rendered", () => {
-  it("renders the ResultsContainer", () => {
+describe('Stuff gets rendered', () => {
+  it('renders the ResultsContainer', () => {
     const component = mount(<App />);
-    expect(component.exists(".results-container")).toEqual(true);
+    expect(component.exists('.results-container')).toEqual(true);
   });
-  it("renders with correct default text", () => {
+  it('renders with correct default text', () => {
     const component = mount(<App />);
-    const target = component.find(".default-results-text");
-    expect(target.text()).toEqual("Enter a name and hit submit!");
+    const target = component.find('.default-results-text');
+    expect(target.text()).toEqual('Enter a name and hit submit!');
   });
-  it("renders reults...!?", () => {
+  it('renders reults...!?', () => {
     const component = mount(<App />);
     component.setState({
       characterData: {
         results: [
           {
-            name: "Luke Skywalker",
-            url: "https://swapi.co/api/people/1/"
-          }
-        ]
-      }
+            name: 'Luke Skywalker',
+            url: 'https://swapi.co/api/people/1/',
+          },
+        ],
+      },
     });
     component.update();
     const target = component
-      .find(".results-container")
+      .find('.results-container')
       .children()
       .text();
-    expect(target).toEqual("Luke Skywalker");
-    // FIX this will need to change when I change the results display
+    expect(target).toEqual('Luke Skywalker');
   });
 });
